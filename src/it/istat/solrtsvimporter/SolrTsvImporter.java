@@ -175,7 +175,7 @@ public class SolrTsvImporter {
 				while ((strLine = br.readLine()) != null) {
 					tokens = strLine.split(delimiter);
 					//System.out.println(strLine + "etc...");
-					if (tokens.length != 16){
+					if (tokens.length != 17){
 						logger.error(tokens[0] + " having " + tokens.length + " tokens was not added in Solr !");
 					}else{
 						SolrInputDocument solrInputDocument = new SolrInputDocument();
@@ -195,6 +195,7 @@ public class SolrTsvImporter {
 					    solrInputDocument.setField("codiceLink", tokens[13]);
 					    solrInputDocument.setField("title", tokens[14]);
 					    solrInputDocument.setField("corpoPagina", tokens[15]);
+					    solrInputDocument.setField("depth", tokens[16]);
 					    logger.debug(tokens[0] + " ==> " + strLine.length());
 					    docList.add(solrInputDocument);
 					    //UpdateResponse response = solrServer.add(solrInputDocument, 25000);
@@ -264,8 +265,8 @@ public class SolrTsvImporter {
     	req.setAction( UpdateRequest.ACTION.COMMIT, false, false );
     	req.add (docList);
     	UpdateResponse rsp = req.process( solrServer );
-    	System.out.print ("Added " + docList.size() + " documents to solr. Time taken = " + rsp.getElapsedTime() + " millisecs. " + rsp.toString());
-    	logger.info("Added " + docList.size() + " documents to solr. Time taken = " + rsp.getElapsedTime() + " millisecs. " + rsp.toString());
+    	System.out.print ("Added documents to solr. Time taken = " + rsp.getElapsedTime() + ". " + rsp.toString());
+    	logger.info("Added documents to solr. Time taken = " + rsp.getElapsedTime() + ". " + rsp.toString());
     	long endTime = System.currentTimeMillis();
     	System.out.println (" , time-taken=" + ((double)(endTime-startTime))/1000.00 + " seconds");
     	//logger.info(" , time-taken=" + ((double)(endTime-startTime))/1000.00 + " seconds");

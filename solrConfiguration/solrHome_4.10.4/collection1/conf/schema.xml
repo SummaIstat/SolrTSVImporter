@@ -152,6 +152,7 @@
     <!-- i seguenti 2 fields li ho tagliati da sotto e incollati qui modificandone il type e aggiungendo il termVectors a links-->
     <field name="links" type="text_general" indexed="true" stored="true" multiValued="true" termVectors="true"/>
     <field name="url" type="text_general" indexed="true" stored="true"/>
+    <field name="depth" type="int" indexed="true" stored="true"/>
     <!-- #################################################################### -->
 
 
