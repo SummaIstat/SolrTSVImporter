@@ -49,7 +49,7 @@ If you have Java already installed on your PC you just have to apply the followi
 
     	Change the value of the parameters under the "Solr server configuration" according with your local Solr configuration (you can find a Solr environment configuration guide in the solrConfiguration directory)
 
-6) make sure that your Solr server is up and running
+6) make sure that your Solr server is up and running (please refer to the "Solr environment configuration guide.txt" file)
 
 7) open a terminal, go into the myDir directory, type and execute the following command:
         java -jar SolrTsvImporter.jar solrTsvImporterConf.properties solrInput.csv
@@ -72,9 +72,9 @@ java -jar
 
 eg:
 
-java -jar -Xmx2048m SolrTSVImporter.jar solrTsvImporterConf.properties solrInput.csv
+java -jar -Xmx2048m SolrTsvImporter.jar solrTsvImporterConf.properties solrInput.csv
 
-java -jar -Xmx1024m /home/summa/workspace/SolrTSVImporter/sandbox/SolrTSVImporter.jar /home/summa/workspace/SolrTSVImporter/sandbox/solrTsvImporterConf.properties /home/summa/workspace/SolrTSVImporter/sandbox/solrInput.csv
+java -jar -Xmx1024m /home/summa/workspace/SolrTSVImporter/sandbox/SolrTsvImporter.jar /home/summa/workspace/SolrTSVImporter/sandbox/solrTsvImporterConf.properties /home/summa/workspace/SolrTSVImporter/sandbox/solrInput.csv
 
 
 ======================================================================
@@ -85,7 +85,7 @@ If you are using a Windows based operating system you just have to do exactly th
 
 eg:
 
-java -jar -Xmx1536m C:\workspace\SolrTSVImporter\sandbox\SolrTSVImporter.jar C:\workspace\SolrTSVImporter\sandbox\solrTsvImporterConf.properties C:\workspace\SolrTSVImporter\sandbox\solrInput.csv
+java -jar -Xmx1536m C:\workspace\SolrTSVImporter\sandbox\SolrTsvImporter.jar C:\workspace\SolrTSVImporter\sandbox\solrTsvImporterConf.properties C:\workspace\SolrTSVImporter\sandbox\solrInput.csv
 
 
 ======================================================================

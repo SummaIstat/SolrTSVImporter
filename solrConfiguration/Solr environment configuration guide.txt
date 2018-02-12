@@ -16,6 +16,72 @@ from solrConfiguration directory to your home ( /home/myUser )
 
 2) Open in a text editor the following file
 
+/home/myUser/solrHome_4.10.4/collection1/conf/schema.xml
+
+and customize the following block of code
+
+	<fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
+      <analyzer type="index">
+        <!--
+          please consult the following webpage for more information:
+          https://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters
+        -->
+        <!--
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        -->
+        <tokenizer class="solr.LetterTokenizerFactory"/>
+        
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+        <!-- in this example, we will only use synonyms at query time
+        <filter class="solr.SynonymFilterFactory" synonyms="index_synonyms.txt" ignoreCase="true" expand="false"/>
+        -->
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <!--
+          please consult the following webpage for the correct configuration in your language:
+          https://wiki.apache.org/solr/LanguageAnalysis
+        -->  
+        <filter class="solr.SnowballPorterFilterFactory" language="Italian"/>
+        
+      </analyzer>
+      <analyzer type="query">
+        <!--
+          please consult the following webpage for more information:
+          https://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters
+        -->
+        <!--
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        -->
+        <tokenizer class="solr.LetterTokenizerFactory"/>
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+        <!--
+        <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+        -->
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <!--
+          please consult the following webpage for the correct configuration in your language:
+          https://wiki.apache.org/solr/LanguageAnalysis
+        -->  
+        <filter class="solr.SnowballPorterFilterFactory" language="Italian"/>
+        
+      </analyzer>
+    </fieldType>
+
+Unless you have special needs, it should be necessary to modify only the 2 lines about the language, for example:
+	
+	<filter class="solr.SnowballPorterFilterFactory" language="Italian"/>
+
+	could be changed in :
+
+	<filter class="solr.SnowballPorterFilterFactory" language="Hungarian"/>	
+
+In any case please refer to the following links for more accurate information:
+	https://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters
+	https://wiki.apache.org/solr/LanguageAnalysis
+
+
+
+3) Open in a text editor the following file
+
 /home/myUser/apache-tomcat-7.0.57/webapps/solr/WEB-INF/web.xml
 
 and customize the solr/home parameter, in our case the following block of xml:
@@ -34,25 +100,25 @@ will be changed into this block:
     <env-entry-type>java.lang.String</env-entry-type>
 </env-entry>
 
-3) Solr is a web application, so in order to be launched you first need to launch its container.
+4) Solr is a web application, so in order to be launched you first need to launch its container.
 In particular I used Tomcat, so you have to start Tomcat by :
 opening a terminal
 go into the /home/myUser/apache-tomcat-7.0.57/bin directory
 type and execute the command "./startup.sh"
 
-4) Open a web browser and go to the following address :
+5) Open a web browser and go to the following address :
 http://localhost:8080/solr
 You should see the Solr homepage (if not wait for a few seconds and reload the page)
 
-5) Select the core called "collection1" from the core selector combobox
+6) Select the core called "collection1" from the core selector combobox
 just under that selector click on the "Query" link
 click on the "Execute Query" button in the right part of the screen (you are asking Solr to show you all the documents contained in collection1)
 the number of documents retrieved will be 0
 
-6) repeat the instructions at the point 5 after loading the CSV file in Solr to verify that everything went well
+7) repeat the instructions at the point 5 after loading the CSV file in Solr to verify that everything went well
 
-7) If you want to delete the documents just uploaded you can open a new tab in your browser, paste the following url in the address bar and press enter :
+8) If you want to delete the documents just uploaded you can open a new tab in your browser, paste the following url in the address bar and press enter :
 
 localhost:8080/solr/collection1/update?stream.body=<delete><query>*:*</query></delete>&commit=true
 
-8) If you want to "close" Solr you just need to type and execute the command "./shutdown.sh" in the same terminal that you used to start Tomcat (see point 3).
+9) If you want to "close" Solr you just need to type and execute the command "./shutdown.sh" in the same terminal that you used to start Tomcat (see point 3).

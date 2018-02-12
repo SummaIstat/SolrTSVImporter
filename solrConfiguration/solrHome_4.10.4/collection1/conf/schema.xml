@@ -529,6 +529,10 @@
     <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
       <analyzer type="index">
         <!--
+          please consult the following webpage for more information:
+          https://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters
+        -->
+        <!--
         <tokenizer class="solr.StandardTokenizerFactory"/>
         -->
         <tokenizer class="solr.LetterTokenizerFactory"/>
@@ -539,10 +543,17 @@
         -->
         <filter class="solr.LowerCaseFilterFactory"/>
         <!--
+          please consult the following webpage for the correct configuration in your language:
+          https://wiki.apache.org/solr/LanguageAnalysis
+        -->  
         <filter class="solr.SnowballPorterFilterFactory" language="Italian"/>
-        -->
+        
       </analyzer>
       <analyzer type="query">
+        <!--
+          please consult the following webpage for more information:
+          https://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters
+        -->
         <!--
         <tokenizer class="solr.StandardTokenizerFactory"/>
         -->
@@ -553,8 +564,11 @@
         -->
         <filter class="solr.LowerCaseFilterFactory"/>
         <!--
+          please consult the following webpage for the correct configuration in your language:
+          https://wiki.apache.org/solr/LanguageAnalysis
+        -->  
         <filter class="solr.SnowballPorterFilterFactory" language="Italian"/>
-        -->
+        
       </analyzer>
     </fieldType>
 
