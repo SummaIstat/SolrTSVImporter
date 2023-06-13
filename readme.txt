@@ -87,6 +87,12 @@ eg:
 
 java -jar -Xmx1536m C:\workspace\SolrTSVImporter\sandbox\SolrTsvImporter.jar C:\workspace\SolrTSVImporter\sandbox\solrTsvImporterConf.properties C:\workspace\SolrTSVImporter\sandbox\solrInput.csv
 
+======================================================================
+LICENSING
+======================================================================
+
+This software is released under the European Union Public License v. 1.2
+A copy of the license is included in the project folder.
 
 ======================================================================
 Considerations
